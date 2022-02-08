@@ -8,10 +8,10 @@ namespace Lesson_8._2
 	{
 		static void Main(string[] args)
 		{
-			Dictionary<List<uint>, string> phonebook = new Dictionary<List<uint>, string>();
-            
+			Dictionary<string, string> phonebook = new Dictionary<string, string>();
+			
 			do
-            {
+			{
 				Clear();
 				WriteLine("1 - добавить контакт\n2 - найти контакт\n3 - выход");
 				string temp = ReadLine();
@@ -27,41 +27,38 @@ namespace Lesson_8._2
 				{
 					break;
 				}
-            } while (true);
+			} while (true);
 			ReadKey();
 		}
-		static void AddContact(Dictionary<List<uint>, string> phonebook)
+		static void AddContact(Dictionary<string, string> phonebook)
 		{
 			Clear();
-			List<uint> keyList = new List<uint>();
-			int count =0;
-			uint key = 0;
 			string temp;
+			string key = string.Empty;
 
-			WriteLine("Телефон(толь цифры): ");
+			WriteLine("Телефон: ");
 			while ((temp = ReadLine()) != "")
 			{
-				keyList.Add(uint.Parse(temp));
+				key += temp + " ";
 			}
 			WriteLine("ФИО: ");
 			temp = ReadLine();
-			phonebook.Add(keyList, temp);
+			phonebook.Add(key, temp);
 		}
-		static void FindContact(Dictionary<List<uint>, string> phonebook) 
+		static void FindContact(Dictionary<string, string> phonebook) 
 		{
 			Clear();
-            WriteLine("Введите номер");
-			uint num = uint.Parse(ReadLine());
-            foreach (var e in phonebook)
-            {
-                if (e.Key.IndexOf(num) != -1)
-                {
-                    WriteLine(e.Value);
-					ReadKey();
-					return;
-                }
-            }
-            WriteLine("Такого контакта не существует");
+			WriteLine("Введите номер");
+			string num = ReadLine();
+			string value;
+			if (phonebook.TryGetValue(num, out value))
+			{
+				WriteLine(value);
+			}
+			else
+			{
+				WriteLine("Такого контакта нет");
+			}
 			ReadKey();
 		}
 	}
