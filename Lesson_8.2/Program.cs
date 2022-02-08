@@ -33,17 +33,14 @@ namespace Lesson_8._2
 		static void AddContact(Dictionary<string, string> phonebook)
 		{
 			Clear();
-			string temp;
-			string key = string.Empty;
+			string value;
+			string key;
 
 			WriteLine("Телефон: ");
-			while ((temp = ReadLine()) != "")
-			{
-				key += temp + " ";
-			}
+			key = ReadLine();
 			WriteLine("ФИО: ");
-			temp = ReadLine();
-			phonebook.Add(key, temp);
+			value = ReadLine();
+			phonebook.Add(key, value);
 		}
 		static void FindContact(Dictionary<string, string> phonebook) 
 		{
